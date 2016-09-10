@@ -6,7 +6,7 @@ var express = require('express'),
 //send our index.html to the user for the home page
 
 app.get('/', function(req, res){
-	res.sendFile(path.join(__dirname+'/src/webpage.html'));
+	res.sendFile(path.join(__dirname+'/src/public_html/index.html'));
 });
 
 //create routes for the admin section
@@ -27,10 +27,10 @@ var adminRouter = express.Router();
 
 
 
-
-//admin main page. the dashboard  (http://localhost:1337/admin)
+//comment to run
+//admin main page. the dashboard  (http://localhost:1337/app)
 adminRouter.get('/', function(req,res){
-	res.send('i am the dashboard');
+	res.sendFile(path.join(__dirname+'/src/public_html/index.html'));
 });
 
 //users page (http://localhost:1337/admin/users)
