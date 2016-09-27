@@ -47,6 +47,7 @@ adminRouter.get('/posts', function(req,res){
 app.use('/app', adminRouter);
 ///testing user and pass to gitbash
 //test2
+//test3
 
 
 
