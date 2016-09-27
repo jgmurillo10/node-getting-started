@@ -19,7 +19,7 @@ var adminRouter = express.Router();
  adminRouter.use(function(req,res,next){
  	//log each request to the console
  	console.log(req.method, req.url);
-
+ 	console.log('holamundogonorreas');
  	//continue doing some stuff
  	next();
  })
