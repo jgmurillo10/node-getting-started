@@ -45,6 +45,7 @@ adminRouter.get('/posts', function(req,res){
 
 //apply the routes to our aplication
 app.use('/app', adminRouter);
+///testing user and pass to gitbash
 
 
 
