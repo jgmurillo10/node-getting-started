@@ -14,6 +14,11 @@ app.get('/', function(req, res){
 //get an instance of the router
 var adminRouter = express.Router();
 
+var apiRoutes = express.Router();
+
+var basicRoutes = express.Router();
+
+
 //route middleware that will happen on every
  
  adminRouter.use(function(req,res,next){
@@ -22,9 +27,41 @@ var adminRouter = express.Router();
  	console.log('holamundogonorreas');
  	//continue doing some stuff
  	next();
+ });
+
+ adminRouter.param('name', function(req,res, next, name){
+ 	//do validation on name here
+ 	//blah blah validation
+ 	//log something so we know its working
+ 	console.log('doing some validation on '+ name);
+ 	//once validation is done save the new item in the req
+ 	req.name=name;
+ 	//go to the next thing
+ 	next();
+ })
+ //route with parameters (http://localhost:1337/admin/hello/:name)
+ adminRouter.get('/hello/:name', function(req,res){
+ 	res.send('hello '+req.name + '!');
  })
 
 
+basicRoutes.get('/', function(req, res){
+	res.send('basic routes page');
+});
+basicRoutes.get('/profile', function(req, res){
+	res.send('basic routes page profile');
+});
+
+apiRoutes.get('/', function(req, res){
+	res.send('this is the page for api routes');
+});
+
+apiRoutes.get('/posts', function(req, res){
+	res.send('this is the page for api routes');
+});
+apiRoutes.get('/users', function(req, res){
+	res.send('this is the page for api routes');
+});
 
 
 //comment to run
@@ -43,12 +80,26 @@ adminRouter.get('/posts', function(req,res){
 	res.send('i show all the posts!');
 });
 
-//apply the routes to our aplication
-app.use('/app', adminRouter);
-///testing user and pass to gitbash
-//test2
-//test3
+adminRouter.get('/users/:name',function(req,res){
+	res.send('hello '+req.params.name+'!');
+});
 
+//login route
+
+app.route('/login')
+	//show the form (GET http://localhost:1337/login)
+	.get(function(req,res){
+		res.send('this is the login form');
+	})
+	.post(function(req,res){
+		console.log('processing...');
+		res.send('processing the login form');
+	});
+
+//apply the routes to our aplication
+app.use('/admin', adminRouter);
+app.use('/api', apiRoutes);
+app.use('/', basicRoutes);
 
 
 //start the server
