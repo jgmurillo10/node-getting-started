@@ -1,7 +1,13 @@
 //load the express package and create our app
 var express = require('express'),
 	app = express(),
- 	path = require('path');
+ 	path = require('path'),
+ 	mongoose = require('mongoose');
+
+
+//connect to database
+//connect or create and connect to nodetest db
+mongoose.connect('mongodb://localhost/nodetest');
 
 //send our index.html to the user for the home page
 
